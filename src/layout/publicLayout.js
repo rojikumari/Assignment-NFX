@@ -5,9 +5,9 @@ import Grid from "@mui/material/Grid";
 export default function PublicLayout({ children }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={7}>
-          <h2>Some placeholder</h2>
+      <Grid container spacing={2} mt={10}>
+        <Grid item xs={4}>
+          <h2></h2>
         </Grid>
         <Grid item xs={5}>
           {children}
