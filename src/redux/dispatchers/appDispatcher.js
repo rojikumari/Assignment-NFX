@@ -2,6 +2,7 @@
 
 import Stores from "../store";
 import Actions from "../actions/appActions";
+import { incNumber, decNumber, resetNumber } from "../actions/appActions";
 
 const AppDispatcher = {
   setUserLoggedIn: (data) => {
@@ -16,6 +17,15 @@ const AppDispatcher = {
   },
   updateUserInfo: (data) => {
     Stores.dispatch({ type: Actions.LOGIN, data });
+  },
+  updateIncrement: () => {
+    Stores.dispatch(incNumber());
+  },
+  updateDecrement: () => {
+    Stores.dispatch(decNumber());
+  },
+  updateResetNumber: () => {
+    Stores.dispatch(resetNumber());
   }
 };
 

@@ -25,6 +25,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "babel-plugin-module-resolver": "^4.1.0",
+    "dotenv": "^10.0.0",
     "formik": "^2.2.9",
     "global": "^4.4.0",
     "lodash.mergewith": "^4.6.2",

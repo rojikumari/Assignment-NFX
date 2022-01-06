@@ -2,6 +2,7 @@ import { createStore, combineReducers } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import AppReducer from "./reducers/appReducer";
+import ChangeNumber from "@redux/reducers/increDecre";
 
 const PersistConfig = {
   key: "root",
@@ -10,7 +11,8 @@ const PersistConfig = {
 };
 
 const AllReducer = {
-  app: AppReducer
+  app: AppReducer,
+  ChangeNumber
 };
 
 const rootReducer = combineReducers(AllReducer);
