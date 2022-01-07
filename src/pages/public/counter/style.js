@@ -1,15 +1,19 @@
 const box = {
-  width: 350,
-  height: 300,
+  width: 300,
+  height: 200,
   textAlign: "center",
-  color: "white",
-  fontSize: 40,
-  backgroundColor: "primary.dark",
+  color: "black",
+  fontSize: 24,
+  backgroundColor: "#95a5ad",
   borderRadius: 5,
-  padding: 5
+  padding: 3,
+  boxShadow:'0px 0px 12px rgba(0,0,2.3)'
+  
 };
-const btn = { ml: 3, 
-  fontSize: 17, 
+const btn = {
+  ml:2,
+  backgroundColor:'#292747',
+  fontSize: 12, 
   fontWeight: "Bol", 
   padding: 2 };
 
