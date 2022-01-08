@@ -1,33 +1,28 @@
 import React from "react";
 import { useFormik } from "formik";
-
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import {box,userInp,btn} from "../signup/style"
+import AppDispatcher from "@redux/dispatchers/appDispatcher"
 const Login = () => {
   const userSignUpData = JSON.parse(localStorage.getItem("form"));
-  console.log(userSignUpData);
   const formik = useFormik({
     initialValues: {
       email: "",
       password: ""
     },
-
     onSubmit: (values) => {
-      // verifyDetails(values)
-      // console.log(values);
-      // const userExistingDetail = {
-      //   userSignUpEmail : values.email,
-      //   userSignUpPassword : values.password,
-      // }
+      console.log(values);
       const verifyUserEmail = values.email;
       const verifyUserPassword = values.password;
       console.log(verifyUserEmail);
       console.log(verifyUserPassword);
       const checkUser = userSignUpData[verifyUserEmail];
-      // const checkUserExistingPassword = userSignUpData[verifyUserPassword];
-
       if (checkUser) {
-        // console.log(checkUserExistingEmail);
         if (checkUser.userPassword === verifyUserPassword) {
           alert("You are logged in Successfully");
+          AppDispatcher.updateUserTokens();
+
         } else {
           alert("wrong password");
         }
@@ -37,12 +32,11 @@ const Login = () => {
     }
   });
   return (
-    <div>
+    <Box sx={box} style={{backgroundColor : "#f0b9d5"}} >
       <h2>Login </h2>
 
       <form onSubmit={formik.handleSubmit}>
-        <label>Email</label>
-        <input
+        <input  style={userInp}
           type="email"
           placeholder="Your Email"
           id="email"
@@ -52,8 +46,7 @@ const Login = () => {
           required
         />
         <br />
-        <label>Password</label>
-        <input
+        <input  style={userInp}
           type="password"
           placeholder="Your password"
           id="password"
@@ -63,9 +56,13 @@ const Login = () => {
           required
         />
         <br />
-        <button type="submit">Log in</button>
+        <Box sx={{textAlign:'center'}}>
+        <Button sx={btn}
+            variant="contained" type="submit">Log in</Button>
+        </Box>
+        
       </form>
-    </div>
+    </Box>
   );
 };
 

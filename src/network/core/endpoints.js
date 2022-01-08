@@ -11,4 +11,7 @@ export const API = {
   AUTH: {
     LOGIN: new Endpoint("/auth", HTTP_METHODS.POST),
   },
+  PRIVATE : {
+    IMAGE_GALLERY : new Endpoint('/list',HTTP_METHODS.GET,"v2")
+  }
 };

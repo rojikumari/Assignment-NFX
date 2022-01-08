@@ -1,8 +1,11 @@
-// import React, { useEffect } from "react";
 import React from "react";
 import { useFormik } from "formik";
-
+import { useHistory } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import {box,userInp,btn} from "./style"
 const SignUp = () => {
+  let redirect = useHistory();
   const formik = useFormik({
     initialValues: {
       fullname: "",
@@ -15,35 +18,26 @@ const SignUp = () => {
         useremail: values.email,
         userPassword: values.password
       };
-      console.log(userFormDetail.userName);
-      console.log(values.email);
       const userDetail = localStorage.getItem("form")
         ? JSON.parse(localStorage.getItem("form"))
         : {};
-      if (userDetail[values.email]){
+      if (userDetail[values.email]) {
         alert("The Following email exist already");
-      } 
-      else {
+      } else {
         userDetail[values.email] = userFormDetail;
         alert("Congratulation you are logged In");
+        redirect.push("/auth/login");
       }
       localStorage.setItem("form", JSON.stringify(userDetail));
-      window.location.href = "http://localhost:3000/auth/login";
     }
   });
-  // useEffect(() => {
-  //   localStorage.setItem("form", JSON.stringify(values));
-  // }, [values];
-
-  // function submitForm(e) {
-  //   e.preventDefault();
-  // }
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <Box
+      sx={box}>
+      <h2 style={{ textAlign: "center" }}>Sign Up</h2>
       <form onSubmit={formik.handleSubmit}>
-        <label>Name : </label>
         <input
+          style={userInp}
           type="text"
           placeholder="Your name"
           id="fullname"
@@ -53,8 +47,8 @@ const SignUp = () => {
           required
         />
         <br />
-        <label>Email : </label>
         <input
+          style={userInp}
           type="email"
           placeholder="Your email"
           id="email"
@@ -64,8 +58,8 @@ const SignUp = () => {
           required
         />
         <br />
-        <label>Password : </label>
         <input
+          style={userInp}
           type="password"
           placeholder="Your Password"
           id="password"
@@ -75,9 +69,16 @@ const SignUp = () => {
           required
         />
         <br />
-        <button type="submit">Sign Up</button>
+        <Box sx={{ textAlign: "center" }}>
+          <Button
+            sx={btn}
+            type="submit"
+            variant="contained">
+            Sign Up
+          </Button>
+        </Box>
       </form>
-    </div>
+    </Box>
   );
 };
 export default SignUp;
