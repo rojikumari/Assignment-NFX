@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import Button from "@mui/material/Button";
 import AppDispatcher from "@redux/dispatchers/appDispatcher";
 import Grid from "@mui/material/Grid";
@@ -10,12 +10,11 @@ function Dashboard() {
     gallery: []
   });
   const networkObj = new NetworkManager(API.PRIVATE.IMAGE_GALLERY);
-  networkObj
-    .httpRequest(true)
-    .then((res) => res.data)
-    .then((item) => {
-      setApi({ loading: false, gallery: item });
-    });
+  useEffect(()=>{
+    networkObj.httpRequest(true).then((res)=>{
+      setApi({loading : false, gallery : res.data});
+    })
+  },[])
   return (
     <div>
       <h1 style={{ color: "white" }}>Image Gallery</h1>
@@ -42,7 +41,7 @@ function Dashboard() {
                   boxShadow: "0px 0px 12px rgba(0,0,2.4)"
                 }}
                 src={image.download_url}
-                height="290"
+                height="240"
                 width="319"
               />
             </Grid>
